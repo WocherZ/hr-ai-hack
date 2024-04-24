@@ -1,0 +1,130 @@
+/* app/static/css/style.css */
+:root {
+    --primary-color: #333;
+    --secondary-color: #0779e4;
+    --text-color: #fff;
+    --background-color: #f4f4f4;
+    --error-color: red;
+    --success-color: green;
+    --font-size-default: 16px;
+    --margin-default: 10px;
+    --padding-default: 10px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+}
+
+header {
+    background: var(--primary-color);
+    color: var(--text-color);
+    padding-top: 30px;
+    min-height: 70px;
+    border-bottom: var(--secondary-color) 3px solid;
+}
+
+header a {
+    color: var(--text-color);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: var(--font-size-default);
+}
+
+.navigation {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    height: 40px;
+    line-height: 40px;
+}
+
+@media (max-width: 768px) {
+    .navigation {
+        display: flex;
+        flex-direction: column;
+    }
+    .navigation li {
+        display: block;
+        margin: var(--margin-default) 0;
+    }
+}
+
+.navigation li {
+    display: inline;
+    margin: 0 var(--margin-default);
+}
+
+footer {
+    background: var(--primary-color);
+    color: var(--text-color);
+    text-align: center;
+    padding: var(--padding-default);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: var(--margin-default);
+}
+
+label {
+    display: block;
+    margin-bottom: var(--margin-default);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 100%;
+    padding: var(--padding-default);
+    margin-bottom: var(--margin-default);
+    border: 1px solid #ddd;
+}
+
+button, input[type="submit"] {
+    width: 100%;
+    color: var(--text-color);
+    background: var(--primary-color);
+    padding: var(--padding-default);
+    border: 0;
+    cursor: pointer;
+}
+
+button:hover, input[type="submit"]:hover {
+    background: var(--secondary-color);
+}
+
+.error {
+    color: var(--error-color);
+    margin-bottom: var(--margin-default);
+}
+
+.success {
+    color: var(--success-color);
+    margin-bottom: var(--margin-default);
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}

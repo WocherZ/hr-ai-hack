@@ -1,0 +1,17 @@
+
+sequenceDiagram
+    participant U as User
+    participant C as Candidate
+    participant HR as HR
+    participant T as Test
+    participant Q as Question
+    participant DB as Database
+    U->>DB: authenticate()
+    DB-->>U: return authentication_status
+    C->>DB: request_tests()
+    DB-->>C: return tests_list
+    C->>T: select_test()
+    T->>Q: load_questions()
+    C->>T: submit_answers()
+    T->>HR: evaluate()
+    HR->>C: provide_feedback()

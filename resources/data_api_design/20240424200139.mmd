@@ -1,0 +1,31 @@
+
+classDiagram
+    class User {
+        +String email
+        +String password_hash
+        +Boolean is_authenticated
+        +Boolean is_active
+        +Boolean is_anonymous
+        +get_id() String
+    }
+    class Candidate extends User {
+        +List tests
+    }
+    class HR extends User {
+        +List candidates
+    }
+    class Test {
+        +String title
+        +String content
+        +List questions
+    }
+    class Question {
+        +String text
+        +List options
+        +String correct_answer
+    }
+    User <|-- Candidate
+    User <|-- HR
+    Candidate --> Test : takes
+    HR --> Candidate : evaluates
+    Test --> Question : contains
