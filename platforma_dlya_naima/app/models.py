@@ -64,3 +64,4 @@ class CandidateTest(db.Model):
     candidate_id = db.Column(db.Integer, db.ForeignKey('candidates.id'), primary_key=True)
     test_id = db.Column(db.Integer, db.ForeignKey('tests.id'), primary_key=True)
     test = relationship("Test", backref="candidate_tests")
+

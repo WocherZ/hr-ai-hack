@@ -2,10 +2,10 @@ from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-from app.models import User, Candidate, HR, Test, Question
+from app.models import User, Candidate, HR, Test, Question, db
 from app.forms import LoginForm, RegistrationForm, TestSubmissionForm
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='app/templates', static_folder='app/static')
 app.config['SECRET_KEY'] = 'your_secret_key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -19,19 +19,38 @@ login_manager.login_view = 'login'
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+# @app.route('/')
+# #@login_required
+# def dashboard():
+#     # if isinstance(current_user, Candidate):
+#     #     tests = Test.query.all()
+#     #     return render_template('dashboard.html', tests=tests, user_type='candidate')
+#     # elif isinstance(current_user, HR):
+#     #     candidates = Candidate.query.all()
+#     #     return render_template('dashboard.html', candidates=candidates, user_type='hr')
+#     # return redirect(url_for('login'))
+#
+#     return render_template('home.html')
+
 @app.route('/')
-@login_required
-def dashboard():
-    if isinstance(current_user, Candidate):
-        tests = Test.query.all()
-        return render_template('dashboard.html', tests=tests, user_type='candidate')
-    elif isinstance(current_user, HR):
-        candidates = Candidate.query.all()
-        return render_template('dashboard.html', candidates=candidates, user_type='hr')
-    return redirect(url_for('login'))
+def home():
+    return render_template('home.html')
+
+
+@app.route('/candidate')
+def candidate_page():
+    return render_template('candidate.html')
+
+@app.route('/hr')
+def hr_page():
+    pass
+    return render_template('hr.html')
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    #db.create_all()
+
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
