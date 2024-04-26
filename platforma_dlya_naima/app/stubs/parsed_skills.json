@@ -1,0 +1,5 @@
+{
+  "0": ["Python", "Flask", "SQLAlchemy", "HTML", "CSS", "JavaScript"],
+  "1": ["Java", "Spring Boot", "Hibernate", "HTML", "CSS", "JavaScript"],
+  "2": ["Go", "Gin", "Gorm", "HTML", "CSS", "JavaScript"]
+}
