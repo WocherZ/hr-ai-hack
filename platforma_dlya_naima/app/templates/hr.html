@@ -30,7 +30,7 @@
     <header class="header_section">
         <div class="container-fluid">
           <nav class="navbar navbar-expand-lg custom_nav-container">
-            <a class="navbar-brand" href=".">
+            <a class="navbar-brand" href="..">
               <img src="{{ url_for('static', filename='images/logo.png') }}" alt="" />
               <span>
                 GigaКарьера
@@ -122,6 +122,7 @@
                     <input id="themeInput" type="text" placeholder="Выберите тему">
                     <input id="questionCountInput" type="number" placeholder="Количество вопросов">
                     <button onclick="createTest()">Создать тест</button>
+                    <button onclick="chooseTest()">Выбрать лучшие вопросы</button>
                   </div>
                 </div>
               </div>
@@ -161,11 +162,24 @@
       var questionCount = document.getElementById("questionCountInput").value;
       
       // Формируем URL с параметрами запроса
-      var url = "/hr/test/?theme=" + encodeURIComponent(theme) + "&questionCount=" + encodeURIComponent(questionCount);
+      var url = "/hr/test/?theme=" + encodeURIComponent(theme) + "&questionCount=" + encodeURIComponent(questionCount) + "&use_giga=1";
       
       // Переходим на новую страницу
       window.location.href = url;
     }
+
+    function chooseTest() {
+      // Получаем значения из полей ввода
+      var theme = document.getElementById("themeInput").value;
+      var questionCount = document.getElementById("questionCountInput").value;
+
+      // Формируем URL с параметрами запроса
+      var url = "/hr/test/?theme=" + encodeURIComponent(theme) + "&questionCount=" + encodeURIComponent(questionCount) + "&use_giga=0";
+
+      // Переходим на новую страницу
+      window.location.href = url;
+    }
+
     function createVacancy() {
       // Получаем значения из полей ввода
       // Формируем URL с параметрами запроса

@@ -100,8 +100,16 @@ def create_test_page(test_id):
 def create_hr_test_page():
     theme = request.args.get('theme')
     question_count = request.args.get('questionCount')
+    use_giga = request.args.get('use_giga')
+    print(use_giga)
+    if use_giga:
+        test_data = new_file_manager.get_data_by_theme(theme, question_count)
+    else:
+        test_data = JsonFileManager('app/stubs/tests_new.json').data[theme]
+        print(test_data)
+
+
     # file_path = os.path.join(os.path.dirname(__file__), 'app', 'tests_new.json')
-    test_data = new_file_manager.get_data_by_theme(theme, question_count)
 
     return render_template('create_test.html', theme=theme, test_data=test_data)
 
