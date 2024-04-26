@@ -33,12 +33,21 @@ def about_page():
     return render_template('about.html')
 
 
+# Создание тестов HR
 @app.route('/create_test/<int:test_id>')
 def create_test_page(test_id):
     test_db = JsonFileManager('app/tests.json')
     test_data = test_db.get_data_by_key(test_id)
 
     return render_template('create_test.html', test_data=test_data)
+
+
+@app.route('/test/<int:test_id>')
+def test_page(test_id):
+    test_db = JsonFileManager('app/tests.json')
+    test_data = test_db.get_data_by_key(test_id)
+
+    return render_template('test.html', test_data=test_data)
 
 
 if __name__ == '__main__':

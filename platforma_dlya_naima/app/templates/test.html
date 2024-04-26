@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>{{ test_data.name }}</h2>
+    <form action="">
+    <ul>
+        {% for example in test_data.data %}
+        <li>
+            <p>Вопрос: {{ example.question }}</p>
+            <input type="text">
+        </li>
+        {% endfor %}
+      <div>
+        <button type="submit">Отправить ответы</button>
+      </div>
+    </ul>
+    </form>
+</body>
+</html>
