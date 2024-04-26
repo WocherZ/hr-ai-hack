@@ -86,45 +86,39 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-5 offset-md-1">
-            <div class="detail-box">
-              <div class="heading_container">
-                <h2>
-                  Выберите действие
-                </h2>
+            <div class="detail-box">                
+                <div class="container">
+                  <h1>Добавить вакансию</h1>
+                  <form id="vacancy-form">
+                      <div class="form-group">
+                          <label for="title">Название вакансии:</label>
+                          <input type="text" id="title" name="title" class="form-control" placeholder="Введите название вакансии" required>
+                      </div>
+                      <div class="form-group">
+                          <label for="description">Описание вакансии:</label>
+                          <textarea id="description" name="description" class="form-control" rows="6" placeholder="Введите описание вакансии" required></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-primary">Создать вакансию</button>
+                  </form>
               </div>
-              <div class="tab_container">
-                <div class="t-link-box" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  <div class="img-box">
-                    <img src="{{ url_for('static', filename='images/test.png') }}" alt="">
-                  </div>
-                  <div class="detail-box">
-                    <h5>
-                      Создать вакансию
-                    </h5>
-                    <h3>
-                      Опишите навыки и опыт желаемого сотрудника и мы подберем вам подходящих кандидатов.
-                    </h3>
-                    <button onclick="createVacancy()">Добавить вакансию</button>
-                  </div>
-                </div>
-                <div class="t-link-box collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  <div class="img-box">
-                    <img src="{{ url_for('static', filename='images/test.png') }}" alt="">
-                  </div>
-                  <div class="detail-box">
-                    <h5>
-                      Создать тест
-                    </h5>
-                    <h3>
-                      Вы получите заданное число вопросов по выбранной теме.
-                    </h3>
-                    <!-- Поля для выбора темы и введения количества вопросов -->
-                    <input id="themeInput" type="text" placeholder="Выберите тему">
-                    <input id="questionCountInput" type="number" placeholder="Количество вопросов">
-                    <button onclick="createTest()">Создать тест</button>
-                  </div>
-                </div>
-              </div>
+              <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- Подключаем jQuery -->
+              <script>
+                  $(document).ready(function() {
+                      $('#vacancy-form').submit(function(event) {
+                          event.preventDefault(); // Предотвращаем отправку формы по умолчанию
+          
+                          // Получаем данные из формы
+                          var title = $('#title').val();
+                          var description = $('#description').val();
+          
+                          // Выполняем необходимые действия с данными, например, отправляем на сервер
+          
+                          // Для примера, выведем данные в консоль
+                          console.log('Название вакансии:', title);
+                          console.log('Описание вакансии:', description);
+                      });
+                  });
+              </script>
             </div>
           </div>
           <div class="col-md-6">
@@ -154,6 +148,8 @@
     </div>
   </section>
 
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
     function createTest() {
       // Получаем значения из полей ввода
@@ -166,14 +162,66 @@
       // Переходим на новую страницу
       window.location.href = url;
     }
-    function createVacancy() {
-      // Получаем значения из полей ввода
-      // Формируем URL с параметрами запроса
-      var url = "/hr/vacancy/";
-      
-      // Переходим на новую страницу
-      window.location.href = url;
+    function showForm() {
+        document.getElementById("question-form").style.display = "block";
     }
+    function addQuestion(event) {
+        event.preventDefault(); // Предотвращаем действие по умолчанию (отправку формы)
+
+        var question = document.getElementById("questionInput").value;
+        var answer = document.getElementById("answerInput").value;
+
+        var newQuestionHTML = `
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">${question}</h5>
+                    <p class="card-text"><strong>Ответ:</strong> ${answer}</p>
+                </div>
+            </div>
+        `;
+
+        // Создаем новый элемент и добавляем его в конец списка вопросов
+        var newQuestionElement = document.createElement("div");
+        newQuestionElement.innerHTML = newQuestionHTML;
+        document.getElementById("questions-container").appendChild(newQuestionElement);
+
+        // Очищаем поля ввода
+        document.getElementById("questionInput").value = "";
+        document.getElementById("answerInput").value = "";
+
+        // Скрываем форму
+        document.getElementById("question-form").style.display = "none";
+    }
+    $(function() {
+        $('.save-test-btn').click(function() {
+            var theme = "{{ theme }}"; // Получаем значение theme из Jinja2 темплейта
+
+            var questions = {};
+            $('.card').each(function() {
+                var question = $(this).find('.card-body .card-title').text();
+                var answer = $(this).find('.card-body .card-text').text().replace('Ответ:', '').trim();
+                questions[question] = answer;
+            });
+
+            var data = {
+                theme: theme,
+                questions: questions
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: '/hr/test/save',
+                contentType: 'application/json',
+                data: JSON.stringify(data), // Отправляем данные в формате JSON
+                success: function(response) {
+                    alert('Тест успешно сохранен!');
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
   </script>
 
   <!-- end freelance section -->

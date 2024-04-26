@@ -100,10 +100,13 @@ def create_hr_test_page():
     theme = request.args.get('theme')
     question_count = request.args.get('questionCount')
     # file_path = os.path.join(os.path.dirname(__file__), 'app', 'tests_new.json')
-    test_data = new_file_manager.get_data_by_theme(theme)
+    test_data = new_file_manager.get_data_by_theme(theme, question_count)
 
     return render_template('create_test.html', theme=theme, test_data=test_data)
 
+@app.route('/hr/vacancy/')
+def create_hr_vacancy_page():
+    return render_template('create_vacancy.html')
 
 @app.route('/hr/test/save', methods=['POST'])
 def save_test():
