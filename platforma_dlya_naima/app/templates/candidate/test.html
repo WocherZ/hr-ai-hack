@@ -21,7 +21,7 @@
         }
     </style>
 
-    <title>GigaКарьера</title>
+    <title>SberКарьера</title>
 
     <!-- bootstrap core css -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}"/>
@@ -42,7 +42,7 @@
                 <a class="navbar-brand" href="..">
                     <img src="{{ url_for('static', filename='images/logo.png') }}" alt=""/>
                     <span>
-                        GigaКарьера
+                        SberКарьера
                     </span>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -100,6 +100,8 @@
                                         <label for="{{ question }}">{{ question }}</label>
                                         <input type="text" class="form-control" id="{{ question }}"
                                                name="{{ question }}" required>
+                                        <button type="button" class="btn btn-success">+</button>
+                                        <button type="button" class="btn btn-danger">-</button>
                                     </div>
                                 {% endfor %}
                             </div>

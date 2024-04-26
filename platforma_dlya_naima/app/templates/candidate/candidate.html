@@ -92,7 +92,23 @@
                   Выберите действие
                 </h2>
               </div>
+
               <div class="tab_container">
+
+                <div class="t-link-box">
+                  <div class="img-box">
+                      <img src="{{ url_for('static', filename='images/exam2.png') }}" alt="">
+                  </div>
+                  <div class="detail-box">
+                      <h5>
+                          Тестирование
+                      </h5>
+                      <h3 id="testBtn">
+                        Подтвердить свои квалификации, пройдя тест
+                      </h3>
+                  </div>
+                </div>
+
                 <div class="t-link-box" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                   <div class="img-box">
                     <img src="{{ url_for('static', filename='images/plus.png') }}" alt="">
@@ -121,6 +137,7 @@
                     
                   </div>
                 </div>
+
                 <div class="t-link-box collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                   <div class="img-box">
                     <img src="{{ url_for('static', filename='images/test.png') }}" alt="">
@@ -136,6 +153,7 @@
                     <button type="button" onclick="location.href='form_page.html'">Заполнить форму</button>
                   </div>
                 </div>
+
               </div>
             </div>
           </div>
@@ -265,7 +283,14 @@
   </section>
 
   <!-- end info section -->
-
+  <script>
+        // Button click event for test
+        const testBtn = document.getElementById('testBtn');
+        testBtn.addEventListener('click', function() {
+            // Redirect to test page
+            window.location.href = '/tests';
+        });
+  </script>
   <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
   <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
   <script src="{{ url_for('static', filename='js/custom.js') }}"></script>

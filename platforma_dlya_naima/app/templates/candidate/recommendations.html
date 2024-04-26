@@ -17,7 +17,7 @@
         }
     </style>
 
-    <title>GigaКарьера</title>
+    <title>SberКарьера</title>
 
     <!-- bootstrap core css -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}"/>
@@ -46,7 +46,7 @@
                 <a class="navbar-brand" href="..">
                     <img src="{{ url_for('static', filename='images/logo.png') }}" alt=""/>
                     <span>
-                GigaКарьера
+                SberКарьера
               </span>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -100,34 +100,32 @@
                 <div style="margin-bottom: 20px;" class="heading_container">
                     <h2>Рекомендованные курсы</h2>
                 </div>
-                {% for skill, recommendation in skill_recommendations.items() %}
-                    <div class="detail-box">
-                        <div class="heading_container">
-                            <h3>{{ skill }}</h3>
+                {% for category, skills in skill_recommendations.items() %}
+                    {% for skill, details in skills.items() %}
+                        <div class="detail-box">
+                            <div class="heading_container">
+                                <h3>{{ skill }}</h3>
+                            </div>
+                            <div class="tab_container">
+                                <a href="{{ details['Ссылка'] }}" target="_blank" class="t-link-box">
+                                    <div class="img-box">
+                                        <img src="{{ url_for('static', filename='images/course2.png') }}" alt="">
+                                    </div>
+                                    <div class="detail-box">
+                                        <p class="skill-recommendation" data-skill="{{ skill }}">{{ details['Описание'] }}</p>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
-                        <div class="tab_container">
-                            <a href="https://sberuniversity.ru/learning/" target="_blank" class="t-link-box">
-                                <div class="img-box">
-                                    <img src="{{ url_for('static', filename='images/course2.png') }}" alt="">
-                                </div>
-                                <div class="detail-box">
-                                    <!-- Paragraph with data attribute for skill -->
-                                    <p class="skill-recommendation" data-skill="{{ skill }}"></p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                    {% endfor %}
                 {% endfor %}
             </div>
         </div>
     </div>
 </section>
-
 <!-- End main content section -->
 
-
 <!-- info section -->
-
 <section class="info_section ">
     <div class="info_container layout_padding-top">
         <div class="container">
@@ -135,7 +133,7 @@
                 <div class="info_logo">
                     <img src="{{ url_for('static', filename='images/logo.png') }}" alt=""/>
                     <span>
-              GigaКарьера
+              SberКарьера
             </span>
                 </div>
             </div>
@@ -225,8 +223,11 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         var skillRecommendations = {
-            {% for skill, recommendation in skill_recommendations.items() %}
-                "{{ skill }}": "{{ recommendation }}"{% if not loop.last %},{% endif %}
+            {% for skill, details in skill_recommendations.items() %}
+                "{{ skill }}": {
+                    "Описание": "{{ details['Описание'] }}",
+                    "Ссылка": "{{ details['Ссылка'] }}"
+                }{% if not loop.last %},{% endif %}
             {% endfor %}
         };
 
@@ -234,15 +235,21 @@
             var paragraphs = document.querySelectorAll(".skill-recommendation");
             paragraphs.forEach(function (paragraph) {
                 var skill = paragraph.getAttribute("data-skill");
-                if (skill in skillRecommendations) {
-                    paragraph.textContent = skillRecommendations[skill];
+                var category = "0"; // Указываем категорию, если она есть в JSON
+                if (skill in skillRecommendations[category]) {
+                    var recommendation = skillRecommendations[category][skill];
+                    paragraph.textContent = recommendation["Описание"];
+                    // Если есть элемент ссылки вокруг абзаца для ссылки
+                    var link = paragraph.closest('a');
+                    if (link) {
+                        link.href = recommendation["Ссылка"];
+                    }
                 }
             });
         }
 
         fillSkillRecommendations();
     });
-</script>
 </script>
 
 <!-- Bootstrap core JavaScript -->
