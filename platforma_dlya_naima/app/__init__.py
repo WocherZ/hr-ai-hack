@@ -18,4 +18,4 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 login_manager.login_message = 'Пожалуйста, войдите в систему для доступа к этой странице.'
 
-from app import routes, models  # Импорт маршрутов и моделей в конце файла для избежания циклических импортов
+#from app import routes, models  # Импорт маршрутов и моделей в конце файла для избежания циклических импортов

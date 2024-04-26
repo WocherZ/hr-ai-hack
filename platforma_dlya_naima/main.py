@@ -2,8 +2,8 @@ from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-# from app.models import User, Candidate, HR, Test, Question, db
-# from app.forms import LoginForm, RegistrationForm, TestSubmissionForm
+from app.file_manager import JsonFileManager
+
 
 app = Flask(__name__, template_folder='app/templates/', static_folder='app/static/')
 app.config['SECRET_KEY'] = 'your_secret_key'
@@ -35,8 +35,10 @@ def about_page():
 
 @app.route('/create_test/<int:test_id>')
 def create_test_page(test_id):
+    test_db = JsonFileManager('app/tests.json')
+    test_data = test_db.get_data_by_key(test_id)
 
-    return render_template('create_test.html')
+    return render_template('create_test.html', test_data=test_data)
 
 
 if __name__ == '__main__':

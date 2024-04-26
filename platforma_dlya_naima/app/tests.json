@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Тест по python",
+    "data": [
+      {"question": "What is python?",
+        "true_answer": "programming language"
+      },
+      {
+        "question": "What is PEP 8?",
+        "true_answer": "It is pep 8"
+      }
+    ]
+  },
+  {
+    "name": "javascript",
+    "data": [
+      {"question": "What is javascript?",
+        "true_answer": "programming language"
+      }
+    ]
+  }
+]

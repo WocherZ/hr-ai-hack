@@ -5,6 +5,21 @@
     <title>Title</title>
 </head>
 <body>
+    <h2>{{ test_data.name }}</h2>
+    <ul>
+        {% for example in test_data.data %}
+        <li>
+            <p>Вопрос: {{ example.question }}</p>
+            <p>Ответ: {{ example.true_answer }}</p>
+        </li>
+        {% endfor %}
 
+    </ul>
+    <div>
+        <button>Добавить вопрос</button>
+    </div>
+    <div>
+        <a href="">Сохранить тест</a>
+    </div>
 </body>
 </html>
