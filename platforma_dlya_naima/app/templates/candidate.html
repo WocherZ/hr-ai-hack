@@ -30,8 +30,8 @@
     <header class="header_section">
         <div class="container-fluid">
           <nav class="navbar navbar-expand-lg custom_nav-container">
-            <a class="navbar-brand" href="index.html">
-              <img src="images/logo.png" alt="" />
+            <a class="navbar-brand" href=".">
+              <img src="{{ url_for('static', filename='images/logo.png') }}" alt="" />
               <span>
                 SberКарьера
               </span>
@@ -43,7 +43,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav  ">
                 <li class="nav-item active">
-                  <a class="nav-link" href="">Домой<span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href=".">Домой<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="hr">HR</a>
@@ -55,16 +55,6 @@
                   <a class="nav-link" href="about">О нас</a>
                 </li>
               </ul>
-              <div class="user_option">
-                <a href="register.html">
-                  <span>
-                    Логин
-                  </span>
-                </a>
-                <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
-                  <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
-                </form>
-              </div>
             </div>
             <div>
               <div class="custom_menu-btn ">
@@ -105,7 +95,7 @@
               <div class="tab_container">
                 <div class="t-link-box" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                   <div class="img-box">
-                    <img src="images/plus.png" alt="">
+                    <img src="{{ url_for('static', filename='images/plus.png') }}" alt="">
                   </div>
                   <div class="detail-box">
                     <h5>
@@ -201,9 +191,9 @@
                 </h5>
                 <ul>
                   <li class=" active">
-                    <a class="" href="">Домой <span class="sr-only">(current)</span></a>
+                    <a class="" href=".">Домой <span class="sr-only">(current)</span></a>
                   </li>
-                  <li class="">
+                  <li class=".">
                     <a class="" href="hr">Для HR</a>
                   </li>
                   <li class="">
@@ -244,7 +234,7 @@
                 <div class="col-md-4">
                   <a href="#" class="link-box">
                     <div class="img-box">
-                      <img src="images/mail.png" alt="">
+                      <img src="{{ url_for('static', filename='images/mail.png') }}" alt="">
                     </div>
                     <div class="detail-box">
                       <h6>

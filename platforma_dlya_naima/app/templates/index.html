@@ -15,7 +15,8 @@
   <title>SberКарьера</title>
 
   <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
+<!--  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />-->
+  <link rel="stylesheet" href="static/css/bootstrap.css" />
 
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
   <!-- Custom styles for this template -->
@@ -55,16 +56,6 @@
                 <a class="nav-link" href="about">О нас</a>
               </li>
             </ul>
-            <div class="user_option">
-<!--              <a href="login.html">-->
-<!--                <span>-->
-<!--                  Логин-->
-<!--                </span>-->
-<!--              </a>-->
-<!--              <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">-->
-<!--                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>-->
-<!--              </form>-->
-            </div>
           </div>
           <div>
             <div class="custom_menu-btn ">
@@ -88,14 +79,6 @@
     <!-- end header section -->
     <!-- slider section -->
     <section class="slider_section ">
-      <div class="carousel_btn-container">
-<!--        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">-->
-<!--          <span class="sr-only">Предыдущий слайд</span>-->
-<!--        </a>-->
-<!--        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">-->
-<!--          <span class="sr-only">Следующий слайд</span>-->
-<!--        </a>-->
-      </div>
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active">01</li>
@@ -238,9 +221,11 @@
 
   <!-- end info section -->
 
-  <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+  <img src="static/images/logo.png" alt="" />
+
+  <script src="static/js/jquery-3.4.1.min.js"></script>
+  <script src="static/js/bootstrap.js"></script>
+  <script src="static/js/custom.js"></script>
 
 </body>
 

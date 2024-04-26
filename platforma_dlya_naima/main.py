@@ -33,5 +33,11 @@ def about_page():
     return render_template('about.html')
 
 
+@app.route('/create_test/<int:test_id>')
+def create_test_page(test_id):
+
+    return render_template('create_test.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True)
