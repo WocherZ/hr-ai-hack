@@ -15,13 +15,13 @@
     <title>SberКарьера</title>
   
     <!-- bootstrap core css -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
   
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
     <!-- responsive style -->
-    <link href="css/responsive.css" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/responsive.css') }}" rel="stylesheet" />
   </head>
 
 <body class="sub_page">
@@ -43,16 +43,16 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav  ">
                 <li class="nav-item active">
-                  <a class="nav-link" href="index.html">Домой<span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="">Домой<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="hr.html">HR</a>
+                  <a class="nav-link" href="hr">HR</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="candidate.html">Кандидат</a>
+                  <a class="nav-link" href="candidate">Кандидат</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="about.html">О нас</a>
+                  <a class="nav-link" href="about">О нас</a>
                 </li>
               </ul>
               <div class="user_option">
@@ -133,7 +133,7 @@
                 </div>
                 <div class="t-link-box collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                   <div class="img-box">
-                    <img src="images/test.png" alt="">
+                    <img src="{{ url_for('static', filename='images/test.png') }}" alt="">
                   </div>
                   <div class="detail-box">
                     <h5>
@@ -152,22 +152,22 @@
           <div class="col-md-6">
             <div class="collapse show" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion">
               <div class="img-box">
-                <img src="images/freelance-img.jpg" alt="">
+                <img src="{{ url_for('static', filename='images/freelance-img.jpg') }}" alt="">
               </div>
             </div>
             <div class="collapse" id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordion">
               <div class="img-box">
-                <img src="images/freelance-img.jpg" alt="">
+                <img src="{{ url_for('static', filename='images/freelance-img.jpg') }}" alt="">
               </div>
             </div>
             <div class="collapse" id="collapseThree" aria-labelledby="headingThree" data-parent="#accordion">
               <div class="img-box">
-                <img src="images/freelance-img.jpg" alt="">
+                <img src="{{ url_for('static', filename='images/freelance-img.jpg') }}" alt="">
               </div>
             </div>
             <div class="collapse" id="collapseFour" aria-labelledby="headingfour" data-parent="#accordion">
               <div class="img-box">
-                <img src="images/freelance-img.jpg" alt="">
+                <img src="{{ url_for('static', filename='images/freelance-img.jpg') }}" alt="">
               </div>
             </div>
           </div>
@@ -185,7 +185,7 @@
       <div class="container">
         <div class="info_top">
           <div class="info_logo">
-            <img src="images/logo.png" alt="" />
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="" />
             <span>
               SberКарьера
             </span>
@@ -201,16 +201,16 @@
                 </h5>
                 <ul>
                   <li class=" active">
-                    <a class="" href="index.html">Домой <span class="sr-only">(current)</span></a>
+                    <a class="" href="">Домой <span class="sr-only">(current)</span></a>
                   </li>
                   <li class="">
-                    <a class="" href="hr.html">Для HR</a>
+                    <a class="" href="hr">Для HR</a>
                   </li>
                   <li class="">
-                    <a class="" href="candidate.html">Для кандидат</a>
+                    <a class="" href="candidate">Для кандидат</a>
                   </li>
                   <li class="">
-                    <a class="" href="about.html">О нас</a>
+                    <a class="" href="about">О нас</a>
                   </li>
                 </ul>
               </div>
@@ -232,7 +232,7 @@
                 <div class="col-md-3">
                   <a href="#" class="link-box">
                     <div class="img-box">
-                      <img src="images/location.png" alt="">
+                      <img src="{{ url_for('static', filename='images/location.png') }}" alt="">
                     </div>
                     <div class="detail-box">
                       <h6>
@@ -256,7 +256,7 @@
                 <div class="col-md-5">
                   <a href="#" class="link-box">
                     <div class="img-box">
-                      <img src="images/call.png" alt="">
+                      <img src="{{ url_for('static', filename='images/call.png') }}" alt="">
                     </div>
                     <div class="detail-box">
                       <h6>
@@ -276,13 +276,12 @@
 
   <!-- end info section -->
 
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/bootstrap.js"></script>
-  <script src="js/custom.js"></script>
+  <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
 
 
 
-</body>
 </body>
 
 </html>
