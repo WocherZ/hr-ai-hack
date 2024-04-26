@@ -1,25 +1,348 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h2>{{ test_data.name }}</h2>
-    <ul>
-        {% for example in test_data.data %}
-        <li>
-            <p>Вопрос: {{ example.question }}</p>
-            <p>Ответ: {{ example.true_answer }}</p>
-        </li>
-        {% endfor %}
+<html>
 
-    </ul>
-    <div>
-        <button>Добавить вопрос</button>
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+  
+    <title>SberКарьера</title>
+  
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="{{ url_for('static', filename='css/responsive.css') }}" rel="stylesheet" />
+  </head>
+
+<body class="sub_page">
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container">
+            <a class="navbar-brand" href=".">
+              <img src="{{ url_for('static', filename='images/logo.png') }}" alt="" />
+              <span>
+                SberКарьера
+              </span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+  
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav  ">
+                <li class="nav-item active">
+                  <a class="nav-link" href="index">Домой<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="hr">HR</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="candidate">Кандидат</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="about">О нас</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <div class="custom_menu-btn ">
+                <button>
+                  <span class=" s-1">
+  
+                  </span>
+                  <span class="s-2">
+  
+                  </span>
+                  <span class="s-3">
+  
+                  </span>
+                </button>
+              </div>
+            </div>
+  
+          </nav>
+        </div>
+      </header>
+      <!-- end header section -->
+  </div>
+
+
+  <!-- freelance section -->
+
+  <section class="freelance_section layout_padding">
+    <div id="accordion">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-5 offset-md-1">
+            <div class="detail-box">
+                <div class="heading_container">
+                    <h2>{{ theme }}</h2>
+                </div>
+                
+                <!-- <div class="container" id="questions-container">
+                    {% for example in test_data %}
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Вопрос</h5>
+                            <p class="card-text">{{ example.question }}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Ответ:</strong> {{ example.true_answer }}</li>
+                        </ul>
+                    </div>
+                    {% endfor %}
+                </div> -->
+                <div class="container" id="questions-container">
+                    {% for question, answer in test_data.items() %}
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ question }}</h5>
+                            <p class="card-text"><strong>Ответ:</strong> {{ answer }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="button-container mt-4">
+                    <button class="btn btn-primary add-question-btn" onclick="showForm()">Добавить вопрос</button>
+                    <button class="btn btn-primary save-test-btn">Сохранить тест</button>
+                </div>
+                <div class="container mt-4" id="question-form" style="display: none;">
+                    <form id="add-question-form">
+                        <div class="form-group">
+                            <label for="questionInput">Вопрос:</label>
+                            <input type="text" class="form-control" id="questionInput" placeholder="Введите вопрос">
+                        </div>
+                        <div class="form-group">
+                            <label for="answerInput">Ответ:</label>
+                            <textarea class="form-control" id="answerInput" rows="3" placeholder="Введите ответ"></textarea>
+                        </div>
+                        <button class="btn btn-primary" onclick="addQuestion(event)">Добавить</button>
+                    </form>
+                </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="collapse show" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="img-box">
+                <img src="{{ url_for('static', filename='images/freelance-img.jpg') }}" alt="">
+              </div>
+            </div>
+            <div class="collapse" id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordion">
+              <div class="img-box">
+                <img src="{{ url_for('static', filename='images/freelance-img.jpg') }}" alt="">
+              </div>
+            </div>
+            <div class="collapse" id="collapseThree" aria-labelledby="headingThree" data-parent="#accordion">
+              <div class="img-box">
+                <img src="{{ url_for('static', filename='images/freelance-img.jpg') }}" alt="">
+              </div>
+            </div>
+            <div class="collapse" id="collapseFour" aria-labelledby="headingfour" data-parent="#accordion">
+              <div class="img-box">
+                <img src="{{ url_for('static', filename='images/freelance-img.jpg') }}" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div>
-        <a href="">Сохранить тест</a>
+  </section>
+
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    function createTest() {
+      // Получаем значения из полей ввода
+      var theme = document.getElementById("themeInput").value;
+      var questionCount = document.getElementById("questionCountInput").value;
+      
+      // Формируем URL с параметрами запроса
+      var url = "/hr/test/?theme=" + encodeURIComponent(theme) + "&questionCount=" + encodeURIComponent(questionCount);
+      
+      // Переходим на новую страницу
+      window.location.href = url;
+    }
+    function showForm() {
+        document.getElementById("question-form").style.display = "block";
+    }
+    function addQuestion(event) {
+        event.preventDefault(); // Предотвращаем действие по умолчанию (отправку формы)
+
+        var question = document.getElementById("questionInput").value;
+        var answer = document.getElementById("answerInput").value;
+
+        var newQuestionHTML = `
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">${question}</h5>
+                    <p class="card-text"><strong>Ответ:</strong> ${answer}</p>
+                </div>
+            </div>
+        `;
+
+        // Создаем новый элемент и добавляем его в конец списка вопросов
+        var newQuestionElement = document.createElement("div");
+        newQuestionElement.innerHTML = newQuestionHTML;
+        document.getElementById("questions-container").appendChild(newQuestionElement);
+
+        // Очищаем поля ввода
+        document.getElementById("questionInput").value = "";
+        document.getElementById("answerInput").value = "";
+
+        // Скрываем форму
+        document.getElementById("question-form").style.display = "none";
+    }
+    $(function() {
+        $('.save-test-btn').click(function() {
+            var theme = "{{ theme }}"; // Получаем значение theme из Jinja2 темплейта
+
+            var questions = {};
+            $('.card').each(function() {
+                var question = $(this).find('.card-body .card-title').text();
+                var answer = $(this).find('.card-body .card-text').text().replace('Ответ:', '').trim();
+                questions[question] = answer;
+            });
+
+            var data = {
+                theme: theme,
+                questions: questions
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: '/hr/test/save',
+                contentType: 'application/json',
+                data: JSON.stringify(data), // Отправляем данные в формате JSON
+                success: function(response) {
+                    alert('Тест успешно сохранен!');
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+  </script>
+
+  <!-- end freelance section -->
+
+  <!-- info section -->
+
+  <section class="info_section ">
+    <div class="info_container layout_padding-top">
+      <div class="container">
+        <div class="info_top">
+          <div class="info_logo">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="" />
+            <span>
+              SberКарьера
+            </span>
+          </div>
+        </div>
+
+        <div class="info_main">
+          <div class="row">
+            <div class="col-md-3 col-lg-2">
+              <div class="info_link-box">
+                <h5>
+                  Навигация
+                </h5>
+                <ul>
+                  <li class=" active">
+                    <a class="" href=".">Домой <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="">
+                    <a class="" href="hr">Для HR</a>
+                  </li>
+                  <li class="">
+                    <a class="" href="candidate">Для кандидат</a>
+                  </li>
+                  <li class="">
+                    <a class="" href="about">О нас</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-3 ">
+              <h5>
+                Тестовая верисия страницы
+              </h5>
+              <p>
+                Сайт выполнен в рамках хакатона. Некоторые функции могут отсутствовать.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-9 col-md-10 mx-auto">
+            <div class="info_contact layout_padding2">
+              <div class="row">
+                <div class="col-md-3">
+                  <a href="#" class="link-box">
+                    <div class="img-box">
+                      <img src="{{ url_for('static', filename='images/location.png') }}" alt="">
+                    </div>
+                    <div class="detail-box">
+                      <h6>
+                        Офис
+                      </h6>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-md-4">
+                  <a href="#" class="link-box">
+                    <div class="img-box">
+                      <img src="{{ url_for('static', filename='images/mail.png') }}" alt="">
+                    </div>
+                    <div class="detail-box">
+                      <h6>
+                        demo@gmail.com
+                      </h6>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-md-5">
+                  <a href="#" class="link-box">
+                    <div class="img-box">
+                      <img src="{{ url_for('static', filename='images/call.png') }}" alt="">
+                    </div>
+                    <div class="detail-box">
+                      <h6>
+                        Call +7 999 999 99 99
+                      </h6>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
+  </section>
+
+  <!-- end info section -->
+
+  <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+
+
+
 </body>
+
 </html>

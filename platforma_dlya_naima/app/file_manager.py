@@ -12,8 +12,10 @@ class JsonFileManager:
             with open(self.filepath, 'r', encoding='utf-8') as file:
                 return json.load(file)
         except FileNotFoundError:
+            print("FileNotFoundError")
             return {}  # Возвращает пустой словарь, если файл не найден
         except json.JSONDecodeError:
+            print("JSONDecodeError")
             return {}  # Возвращает пустой словарь, если файл пуст или не корректен
 
     def add_record(self, key, value):
@@ -33,6 +35,19 @@ class JsonFileManager:
 
     def get_data_by_key(self, key):
         return self.data[key]
+    
+    def get_data_by_name(self, name):
+        for json_v in self.data:
+            if name in json_v['name']:
+                return json_v
+        return None
+    
+    def add_question(self, name, question, answer):
+        """Добавление записи в словарь."""
+        for json_v in self.data:
+            if name in json_v['name']:
+                json_v['data'].append({"question": question, "true_answer": answer})
+                self.save_json()
 
 
 # Использование класса
