@@ -7,7 +7,8 @@ import os
 load_dotenv()
 
 def send_prompt(prompt):
-    with GigaChat(access_token=os.environ['GIGACHAT_TOKEN'], verify_ssl_certs=False, model="GigaChat-Pro", base_url=os.environ['GIGACHAT_BASE_URL']) as giga:
+    # with GigaChat(access_token=os.environ['GIGACHAT_TOKEN'], verify_ssl_certs=False, model="GigaChat-Pro", base_url=os.environ['GIGACHAT_BASE_URL']) as giga:
+    with GigaChat(credentials=os.environ['GIGACHAT_TOKEN'], verify_ssl_certs=False, model="GigaChat") as giga:
         response = giga.chat(prompt)
         return response.choices[0].message.content
     

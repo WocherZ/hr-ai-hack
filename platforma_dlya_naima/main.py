@@ -13,6 +13,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
+
 file_path = os.path.join(os.path.dirname(__file__), 'app', 'stubs', 'tests_new.json')
 new_file_manager = NewJsonFileManager(file_path)
 
