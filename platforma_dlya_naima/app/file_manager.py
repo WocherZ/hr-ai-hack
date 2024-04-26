@@ -49,6 +49,9 @@ class JsonFileManager:
                 json_v['data'].append({"question": question, "true_answer": answer})
                 self.save_json()
 
+    def get_all_data(self) -> dict:
+        return self.data
+
 
 # Использование класса
 if __name__ == "__main__":

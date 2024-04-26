@@ -11,12 +11,12 @@
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-  
+
     <title>SberКарьера</title>
-  
+
     <!-- bootstrap core css -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
-  
+
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
@@ -30,7 +30,7 @@
     <header class="header_section">
         <div class="container-fluid">
           <nav class="navbar navbar-expand-lg custom_nav-container">
-            <a class="navbar-brand" href=".">
+            <a class="navbar-brand" href="..">
               <img src="{{ url_for('static', filename='images/logo.png') }}" alt="" />
               <span>
                 SberКарьера
@@ -43,13 +43,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav  ">
                 <li class="nav-item active">
-                  <a class="nav-link" href=".">Домой<span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="..">Домой<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="hr">HR</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="candidate">Кандидат</a>
+                  <a class="nav-link" href="">Кандидат</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="about">О нас</a>
@@ -107,17 +107,17 @@
                     <!-- Поле для загрузки файла -->
                     <input type="file" name="resume" accept=".pdf, .doc, .docx">
 
-                    <script>
-                      document.addEventListener('DOMContentLoaded', function() {
-                        var fileInput = document.querySelector('input[type="file"][name="resume"]');
-                        fileInput.addEventListener('change', function(event) {
-                          if (event.target.files.length > 0) {
-                            // Файл выбран, перенаправляем пользователя
-                            window.location.href = 'test.html';
-                          }
-                        });
-                      });
-                    </script>
+                      <script>
+                          document.addEventListener('DOMContentLoaded', function() {
+                              var fileInput = document.querySelector('input[type="file"][name="resume"]');
+                              fileInput.addEventListener('change', function(event) {
+                                  if (event.target.files.length > 0) {
+                                      // File is selected, redirect the user
+                                      window.location.href = '/after-upload'; // Changed the URL to '/after-upload'
+                                  }
+                              });
+                          });
+                      </script>
                     
                   </div>
                 </div>
@@ -191,13 +191,13 @@
                 </h5>
                 <ul>
                   <li class=" active">
-                    <a class="" href=".">Домой <span class="sr-only">(current)</span></a>
+                    <a class="" href="..">Домой <span class="sr-only">(current)</span></a>
                   </li>
                   <li class=".">
                     <a class="" href="hr">Для HR</a>
                   </li>
                   <li class="">
-                    <a class="" href="candidate">Для кандидат</a>
+                    <a class="" href="">Для кандидат</a>
                   </li>
                   <li class="">
                     <a class="" href="about">О нас</a>
