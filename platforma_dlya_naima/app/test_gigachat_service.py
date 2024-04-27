@@ -8,10 +8,14 @@ load_dotenv()
 
 def send_prompt(prompt):
     # with GigaChat(access_token=os.environ['GIGACHAT_TOKEN'], verify_ssl_certs=False, model="GigaChat-Pro", base_url=os.environ['GIGACHAT_BASE_URL']) as giga:
-    with GigaChat(credentials=os.environ['GIGACHAT_TOKEN'], verify_ssl_certs=False, model="GigaChat") as giga:
+    with GigaChat(credentials=os.environ['GIGACHAT_TOKEN'], verify_ssl_certs=False, model="GigaChat-Pro") as giga:
+        print("GIGACHAT PRO")
+    # with GigaChat(credentials=os.environ['GIGACHAT_TOKEN'], verify_ssl_certs=False, model="GigaChat") as giga:
+    #     print("GIGACHAT")
         response = giga.chat(prompt)
         return response.choices[0].message.content
-    
+
+
 def parse_response(response, df):
     pattern = r'(\d+)\.\s*(.+)'
 
@@ -33,6 +37,7 @@ def get_answers(df):
         if pd.notna(row['giga_answer']):
             continue
         giga_answer = send_prompt("Ответь на вопрос" + row['question'])
+        print(giga_answer)
         df.at[index, 'giga_answer'] = giga_answer
         
     return df

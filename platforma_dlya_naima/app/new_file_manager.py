@@ -29,8 +29,11 @@ class NewJsonFileManager:
         if test is None:
             df = pd.DataFrame(columns=['numbers', 'question', 'giga_answer', 'exact_answer', 'similarity'])
             answer = send_prompt(f'Сгенерируй {num_questions} тестовых вопросов по {theme}, которые можно задать на собеседовании. В качестве ответа выведи только вопросы')
+            print(answer)
             df = parse_response(answer, df)
             df = get_answers(df)
+            print({row['question']: row['giga_answer'] for _, row in df.iterrows()})
+
             return {row['question']: row['giga_answer'] for _, row in df.iterrows()}
         else:
             return test

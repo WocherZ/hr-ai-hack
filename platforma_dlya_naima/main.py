@@ -102,8 +102,14 @@ def create_hr_test_page():
     question_count = request.args.get('questionCount')
     use_giga = request.args.get('use_giga')
     print(use_giga)
-    if use_giga == 1:
+    if int(use_giga) == 1:
+        print("Make generation test")
         test_data = new_file_manager.get_data_by_theme(theme, question_count)
+        print("TEST DATA")
+        print(test_data)
+        new_file_manager.add_questions(theme, test_data)
+        new_file_manager.save_json()
+        print("Saved")
         # test_data = JsonFileManager('app/stubs/tests_new.json').data[theme]
         # time.sleep(4)
     else:
