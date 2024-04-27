@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from app.file_manager import JsonFileManager
 from app.new_file_manager import NewJsonFileManager
 import os
-
+import time
 
 app = Flask(__name__, template_folder='app/templates/', static_folder='app/static/')
 app.config['SECRET_KEY'] = 'your_secret_key'
@@ -102,8 +102,10 @@ def create_hr_test_page():
     question_count = request.args.get('questionCount')
     use_giga = request.args.get('use_giga')
     print(use_giga)
-    if use_giga:
-        test_data = new_file_manager.get_data_by_theme(theme, question_count)
+    if use_giga == 1:
+        # test_data = new_file_manager.get_data_by_theme(theme, question_count)
+        test_data = JsonFileManager('app/stubs/tests_new.json').data[theme]
+        time.sleep(4)
     else:
         test_data = JsonFileManager('app/stubs/tests_new.json').data[theme]
         print(test_data)

@@ -100,24 +100,23 @@
                 <div style="margin-bottom: 20px;" class="heading_container">
                     <h2>Рекомендованные курсы</h2>
                 </div>
-                {% for category, skills in skill_recommendations.items() %}
-                    {% for skill, details in skills.items() %}
-                        <div class="detail-box">
-                            <div class="heading_container">
-                                <h3>{{ skill }}</h3>
-                            </div>
-                            <div class="tab_container">
-                                <a href="{{ details['Ссылка'] }}" target="_blank" class="t-link-box">
-                                    <div class="img-box">
-                                        <img src="{{ url_for('static', filename='images/course2.png') }}" alt="">
-                                    </div>
-                                    <div class="detail-box">
-                                        <p class="skill-recommendation" data-skill="{{ skill }}">{{ details['Описание'] }}</p>
-                                    </div>
-                                </a>
-                            </div>
+                {% for skill, recommendation in skill_recommendations.items() %}
+                    <div class="detail-box">
+                        <div class="heading_container">
+                            <h3>{{ skill }}</h3>
                         </div>
-                    {% endfor %}
+                        <div class="tab_container">
+                            <a href="https://sberuniversity.ru/learning/" target="_blank" class="t-link-box">
+                                <div class="img-box">
+                                    <img src="{{ url_for('static', filename='images/course2.png') }}" alt="">
+                                </div>
+                                <div class="detail-box">
+                                    <!-- Paragraph with data attribute for skill -->
+                                    <p class="skill-recommendation" data-skill="{{ skill }}"></p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
                 {% endfor %}
             </div>
         </div>
@@ -125,7 +124,9 @@
 </section>
 <!-- End main content section -->
 
+
 <!-- info section -->
+
 <section class="info_section ">
     <div class="info_container layout_padding-top">
         <div class="container">
@@ -222,24 +223,84 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
+        // Предполагается, что skillRecommendations определена где-то в вашем коде с правильной структурой
         var skillRecommendations = {
-            {% for skill, details in skill_recommendations.items() %}
-                "{{ skill }}": {
-                    "Описание": "{{ details['Описание'] }}",
-                    "Ссылка": "{{ details['Ссылка'] }}"
-                }{% if not loop.last %},{% endif %}
-            {% endfor %}
+        "0": {
+            "Веб-разработка": {
+            "Описание": "Рассмотрите возможность использования вашего опыта в Python и Flask для изучения веб-разработки. Также вам может быть полезно углубить знания в области фронтенд-технологий, таких как HTML, CSS и JavaScript, чтобы расширить ваш навык.",
+            "Ссылка": "https://21-school.ru/"
+            },
+            "Управление базами данных": {
+            "Описание": "Учитывая ваш опыт работы с SQLAlchemy, рассмотрите возможность расширения навыков управления базами данных. Изучение различных систем баз данных и техник оптимизации может быть полезным для вашего карьерного роста.",
+            "Ссылка": "https://sberuniversity.ru/learning/courses/hard-skills/osnovy-sql-i-baz-dannykh9858/"
+            },
+            "Data Science": {
+            "Описание": "Используйте свой опыт в Python для изучения области науки о данных. Погружение в библиотеки, такие как NumPy, Pandas и Scikit-learn, может помочь вам стать специалистом в анализе данных и машинном обучении.",
+            "Ссылка": "https://sberuniversity.ru/learning/programmes/tsifrovye-professii/data-scientist/"
+            },
+            "Искусственный интеллект": {
+            "Описание": "Учитывая вашу базу в Python, изучение искусственного интеллекта может быть логичным следующим шагом. Изучение библиотек и фреймворков, таких как TensorFlow или PyTorch, может открыть двери к работе в области глубокого обучения и нейронных сетей.",
+            "Ссылка": "https://sberuniversity.ru/learning/programmes/iskusstvennyy-intellekt-/inzhener-dannykh/"
+            },
+            "DevOps": {
+            "Описание": "Рассмотрите возможность расширения своего опыта в DevOps. Изучение инструментов автоматизации, таких как Jenkins или GitLab CI/CD, поможет вам стать экспертом в автоматизации процессов разработки и доставки программного обеспечения.",
+            "Ссылка": "https://21-school.ru/"
+            }
+        },
+        "1": {
+            "Backend-разработка": {
+            "Описание": "Ваш опыт работы с Java и Spring Boot делает вас подходящим кандидатом для ролей бэкэнд-разработчика. Было бы полезно дополнительно совершенствовать ваши навыки в Hibernate для взаимодействия с базами данных. Кроме того, расширение вашей компетенции в области фронтенд-технологий, таких как HTML, CSS и JavaScript, может расширить ваши карьерные возможности.",
+            "Ссылка": "https://sberuniversity.ru/learning/programmes/tsifrovye-professii/java-developer/"
+            },
+            "Fullstack разработка": {
+            "Описание": "С вашим опытом работы как с бэкэндом, так и с фронтендом, рассмотрите возможность исследования возможностей full-стек разработки. Создание проектов, которые включают в себя разработку от начала до конца, может дать ценный опыт и продвижение по карьерной лестнице.",
+            "Ссылка": "https://21-school.ru/"
+            },
+            "Blockchain": {
+            "Описание": "Учитывая ваш интерес к разработке программного обеспечения, рассмотрите изучение технологии блокчейн. Изучение основных концепций и языков программирования, таких как Solidity, может открыть новые возможности для создания децентрализованных приложений и смарт-контрактов.",
+            "Ссылка": "https://21-school.ru/"
+            },
+            "Интернет вещей (IoT)": {
+            "Описание": "Ваш опыт в разработке программного обеспечения может быть применен в области интернета вещей. Изучение протоколов связи, таких как MQTT, и платформ IoT, таких как Arduino или Raspberry Pi, может помочь вам стать специалистом в создании умных устройств и систем автоматизации.",
+            "Ссылка": "https://21-school.ru/"
+            },
+            "Кибербезопасность": {
+            "Описание": "Учитывая ваш опыт в разработке программного обеспечения, изучение кибербезопасности может быть важным для обеспечения безопасности ваших проектов. Погружение в область взлома и защиты сетей и приложений может помочь вам стать экспертом в области кибербезопасности.",
+            "Ссылка": "https://21-school.ru/"
+            }
+        },
+        "2": {
+            "Backend-разработка": {
+                "Описание": "Ваше мастерство в Go и фреймворке Gin позиционирует вас для ролей бэкэнд-разработчика. Учитывая ваш опыт работы с Gorm, глубже изучение управления базами данных и техник оптимизации может быть выгодным. Расширение вашего знания в области фронтенд-технологий, таких как HTML, CSS и JavaScript, также может дополнить ваш набор навыков.",
+                "Ссылка": "https://sberuniversity.ru/learning/programmes/tsifrovye-professii/java-developer/"
+            },
+            "Микросервисная архитектура": {
+                "Описание": "Учитывая ваш фон в Go и Gin, изучение микросервисной архитектуры может быть естественным шагом вперед. Изучение технологий контейнеризации, таких как Docker, и инструментов оркестрации, таких как Kubernetes, может дополнительно расширить ваш опыт в создании масштабируемых и надежных систем.",
+                "Ссылка": "https://21-school.ru/"
+            },
+            "Игровая разработка": {
+                "Описание": "Учитывая вашу страсть к программированию, рассмотрите возможность войти в индустрию игровой разработки. Изучение игровых движков, таких как Unity или Unreal Engine, может помочь вам создавать захватывающие игровые проекты и реализовывать свои творческие идеи.",
+                "Ссылка": "https://21-school.ru/"
+            },
+            "Сетевое программирование": {
+                "Описание": "Ваш опыт работы с сетевыми технологиями может быть применен в области сетевого программирования. Изучение протоколов передачи данных, таких как TCP/IP, и фреймворков для сетевого взаимодействия, таких как Twisted или Netty, может помочь вам создавать высокопроизводительные сетевые приложения.",
+                "Ссылка": "https://21-school.ru/"
+            },
+            "Big Data": {
+                "Описание": "Учитывая ваш интерес к работе с данными, изучение Big Data технологий может быть вашим следующим шагом. Изучение систем обработки больших объемов данных, таких как Hadoop или Spark, может помочь вам анализировать и извлекать ценные знания из огромных наборов данных.",
+                "Ссылка": "https://sberuniversity.ru/learning/programmes/tsifrovye-professii/data-scientist/"
+            }
+        }
         };
 
         function fillSkillRecommendations() {
             var paragraphs = document.querySelectorAll(".skill-recommendation");
             paragraphs.forEach(function (paragraph) {
                 var skill = paragraph.getAttribute("data-skill");
-                var category = "0"; // Указываем категорию, если она есть в JSON
+                var category = "0";
                 if (skill in skillRecommendations[category]) {
                     var recommendation = skillRecommendations[category][skill];
                     paragraph.textContent = recommendation["Описание"];
-                    // Если есть элемент ссылки вокруг абзаца для ссылки
                     var link = paragraph.closest('a');
                     if (link) {
                         link.href = recommendation["Ссылка"];
@@ -249,6 +310,8 @@
         }
 
         fillSkillRecommendations();
+        
+        console.log(skillRecommendations);
     });
 </script>
 
