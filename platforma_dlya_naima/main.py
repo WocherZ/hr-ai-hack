@@ -103,9 +103,9 @@ def create_hr_test_page():
     use_giga = request.args.get('use_giga')
     print(use_giga)
     if use_giga == 1:
-        # test_data = new_file_manager.get_data_by_theme(theme, question_count)
-        test_data = JsonFileManager('app/stubs/tests_new.json').data[theme]
-        time.sleep(4)
+        test_data = new_file_manager.get_data_by_theme(theme, question_count)
+        # test_data = JsonFileManager('app/stubs/tests_new.json').data[theme]
+        # time.sleep(4)
     else:
         test_data = JsonFileManager('app/stubs/tests_new.json').data[theme]
         print(test_data)
